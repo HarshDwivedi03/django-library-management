@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Borrow Records</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Borrow Records</h2>
+    <ul>
+        {% for record in records %}
+            <li>
+                {{ record.user_name }} borrowed "{{ record.book.title }}" on {{ record.borrow_date }} and returned on {{ record.return_date }}
+            </li>
+        {% empty %}
+            <li>No borrow records available.</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Pagination controls -->
+    <div>
+        {% if records.has_previous %}
+            <a href="?page={{ records.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        Page {{ records.number }} of {{ records.paginator.num_pages }}
+
+        {% if records.has_next %}
+            <a href="?page={{ records.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+    
+    <p><a class="button" href="{% url 'add_borrow_record' %}">Add a new borrow record</a></p>
+</body>
+</html>

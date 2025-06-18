@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Authors</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Authors</h2>
+    <ul>
+        {% for author in authors %}
+            <li>{{ author.name }} - {{ author.email }}</li>
+        {% empty %}
+            <li>No authors available.</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Pagination controls -->
+    <div>
+        {% if authors.has_previous %}
+            <a href="?page={{ authors.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        Page {{ authors.number }} of {{ authors.paginator.num_pages }}
+
+        {% if authors.has_next %}
+            <a href="?page={{ authors.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+    
+    <p><a class="button" href="{% url 'add_author' %}">Add a new author</a></p>
+</body>
+</html>

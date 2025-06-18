@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Books</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of Books</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} - {{ book.genre }} - Published: {{ book.published_date }} - Author: {{ book.author.name }}</li>
+        {% empty %}
+            <li>No books available.</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Pagination controls -->
+    <div>
+        {% if books.has_previous %}
+            <a href="?page={{ books.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        Page {{ books.number }} of {{ books.paginator.num_pages }}
+
+        {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">Next</a>
+        {% endif %}
+    </div>
+    
+    <p><a class="button" href="{% url 'add_book' %}">Add a new book</a></p>
+</body>
+</html>

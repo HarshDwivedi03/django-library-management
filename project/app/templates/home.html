@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Dashboard</h1>
+    <a class="button" href="{% url 'add_author' %}">Add Author</a>
+    <a class="button" href="{% url 'add_book' %}">Add Book</a>
+    <a class="button" href="{% url 'add_borrow_record' %}">Add Borrow Record</a>
+    <br>
+    <a class="button" href="{% url 'list_authors' %}">View Authors</a>
+    <a class="button" href="{% url 'list_books' %}">View Books</a>
+    <a class="button" href="{% url 'list_borrow_records' %}">View Borrow Records</a>
+</body>
+</html>
